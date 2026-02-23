@@ -1,34 +1,66 @@
 // Mobile Navigation Toggle
 const mobileNavToggle = document.querySelector('.mobile-nav-toggle');
 const body = document.body;
-const header = document.querySelector('#header');
 
 if (mobileNavToggle) {
   mobileNavToggle.addEventListener('click', function(e) {
-    header.classList.toggle('mobile-nav-active');
+    body.classList.toggle('mobile-nav-active');
     this.classList.toggle('bi-list');
     this.classList.toggle('bi-x');
   });
+
+  // Close mobile nav when clicking on a link
+  document.querySelectorAll('.navbar a').forEach(link => {
+    link.addEventListener('click', () => {
+      if (body.classList.contains('mobile-nav-active')) {
+        body.classList.remove('mobile-nav-active');
+        mobileNavToggle.classList.add('bi-list');
+        mobileNavToggle.classList.remove('bi-x');
+      }
+    });
+  });
 }
+
+// Header scroll effect
+const header = document.querySelector('#header');
+window.addEventListener('scroll', () => {
+  if (window.scrollY > 50) {
+    header.classList.add('header-scrolled');
+  } else {
+    header.classList.remove('header-scrolled');
+  }
+});
 
 // Navigation active state on scroll
 const navLinks = document.querySelectorAll('#navbar .scrollto');
 
 function navbarlinksActive() {
-  let position = window.scrollY + 200;
-
+  const scrollPosition = window.scrollY;
+  const headerOffset = 80; // Adjusted offset for detection
+  
+  // Find which section is currently in view
+  let currentSection = null;
+  
   navLinks.forEach(navLink => {
     if (!navLink.hash) return;
-
-    let section = document.querySelector(navLink.hash);
+    
+    const section = document.querySelector(navLink.hash);
     if (!section) return;
-
-    if (position >= section.offsetTop && position <= (section.offsetTop + section.offsetHeight)) {
-      navLink.classList.add('active');
-    } else {
-      navLink.classList.remove('active');
+    
+    const sectionTop = section.offsetTop - headerOffset;
+    const sectionBottom = sectionTop + section.offsetHeight;
+    
+    // Check if current scroll position is within this section
+    if (scrollPosition >= sectionTop && scrollPosition < sectionBottom) {
+      currentSection = navLink;
     }
   });
+  
+  // Update active states
+  navLinks.forEach(link => link.classList.remove('active'));
+  if (currentSection) {
+    currentSection.classList.add('active');
+  }
 }
 
 window.addEventListener('load', navbarlinksActive);
@@ -40,16 +72,32 @@ document.querySelectorAll('a.scrollto').forEach(link => {
     if (this.hash !== '') {
       e.preventDefault();
       const hash = this.hash;
+      const target = document.querySelector(hash);
+      
+      if (target) {
+        const headerOffset = 70; // Exact header height
+        const elementPosition = target.getBoundingClientRect().top + window.pageYOffset;
+        const offsetPosition = elementPosition - headerOffset;
 
-      document.querySelector(hash).scrollIntoView({
-        behavior: 'smooth',
-        block: 'start'
-      });
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: 'smooth'
+        });
+        
+        // Update active state after scroll
+        setTimeout(() => {
+          navLinks.forEach(link => link.classList.remove('active'));
+          this.classList.add('active');
+        }, 100);
+      }
 
-      if (header.classList.contains('mobile-nav-active')) {
-        header.classList.remove('mobile-nav-active');
-        mobileNavToggle.classList.toggle('bi-list');
-        mobileNavToggle.classList.toggle('bi-x');
+      // Close mobile nav if open
+      if (body.classList.contains('mobile-nav-active')) {
+        body.classList.remove('mobile-nav-active');
+        if (mobileNavToggle) {
+          mobileNavToggle.classList.add('bi-list');
+          mobileNavToggle.classList.remove('bi-x');
+        }
       }
     }
   });

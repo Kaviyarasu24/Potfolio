@@ -18,36 +18,64 @@
   <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
-  <i class="bi bi-list mobile-nav-toggle d-lg-none"></i>
-
-  <!-- Sidebar -->
-  <header id="header" class="d-flex flex-column justify-content-center">
-    <div class="profile">
-      <img src="assets/images/kavi.png" alt="Profile" class="img-fluid rounded-circle">
-      <h1>Kaviyarasu P</h1>
-      <div class="social-links">
-        <a href="https://github.com/kaviyarasu24" class="github" target="_blank"><i class="bi bi-github"></i></a>
-        <a href="https://www.linkedin.com/in/kaviyarasup2411" class="linkedin" target="_blank"><i class="bi bi-linkedin"></i></a>
-        <a href="mailto:kaviyarasup24@gmail.com" class="email"><i class="bi bi-envelope"></i></a>
+  <!-- Top Navigation -->
+  <header id="header" class="header-top">
+    <div class="container-fluid">
+      <div class="header-content">
+        <div class="logo">
+          <a href="#hero"><i class="bi bi-code-slash"></i> kaviyarasu.dev</a>
+        </div>
+        <nav id="navbar" class="navbar">
+          <ul>
+            <li><a href="#about" class="nav-link scrollto">About</a></li>
+            <li><a href="#skills" class="nav-link scrollto">Skills</a></li>
+            <li><a href="#resume" class="nav-link scrollto">Experience</a></li>
+            <li><a href="#portfolio" class="nav-link scrollto">Projects</a></li>
+            <li><a href="#contact" class="nav-link scrollto">Contact</a></li>
+          </ul>
+          <i class="bi bi-list mobile-nav-toggle"></i>
+        </nav>
       </div>
     </div>
-
-    <nav id="navbar" class="navbar nav-menu">
-      <ul>
-        <li><a href="#hero" class="nav-link scrollto active"><i class="bi bi-house"></i> <span>Home</span></a></li>
-        <li><a href="#about" class="nav-link scrollto"><i class="bi bi-person"></i> <span>About</span></a></li>
-        <li><a href="#resume" class="nav-link scrollto"><i class="bi bi-file-text"></i> <span>Resume</span></a></li>
-        <li><a href="#portfolio" class="nav-link scrollto"><i class="bi bi-grid"></i> <span>Projects</span></a></li>
-        <li><a href="#contact" class="nav-link scrollto"><i class="bi bi-envelope"></i> <span>Contact</span></a></li>
-      </ul>
-    </nav>
   </header>
 
   <!-- Hero Section -->
-  <section id="hero" class="d-flex flex-column justify-content-center">
+  <section id="hero" class="hero-modern">
+    <div class="hero-background"></div>
     <div class="container">
-      <h1>Kaviyarasu P</h1>
-      <p>I'm <span class="typed"></span></p>
+      <div class="hero-content">
+        <div class="status-badge">
+          <span class="status-dot"></span>
+          <span class="status-text">~/kaviyarasu-P > status: open-to-work</span>
+        </div>
+        <h1 class="hero-title">
+          Hi, I'm<span class="gradient-text">Kaviyarasu P</span>
+        </h1>
+        <p class="hero-subtitle">
+          AI & Data Science Student | Python Developer | Data Analyst
+        </p>
+        <p class="hero-role">
+          <span class="terminal-prompt">></span> <span class="typed"></span><span class="cursor">|</span>
+        </p>
+        <div class="hero-buttons">
+          <a href="#portfolio" class="btn btn-primary scrollto">
+            <i class="bi bi-grid"></i> View Projects
+          </a>
+          <a href="#contact" class="btn btn-secondary scrollto">Contact Me</a>
+          <a href="assets/images/resume.pdf" class="btn btn-outline" download>
+            <i class="bi bi-download"></i> Resume
+          </a>
+        </div>
+        <div class="social-links">
+          <a href="https://github.com/kaviyarasu24" target="_blank"><i class="bi bi-github"></i></a>
+          <a href="https://www.linkedin.com/in/kaviyarasup2411" target="_blank"><i class="bi bi-linkedin"></i></a>
+          <a href="mailto:kaviyarasup24@gmail.com"><i class="bi bi-envelope"></i></a>
+        </div>
+        <div class="scroll-indicator">
+          <span>SCROLL</span>
+          <i class="bi bi-mouse"></i>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -164,7 +192,7 @@
       </div>
     </section>
 
-    <!-- Resume Section -->
+    <!-- Resume Section / Experience -->
     <section id="resume" class="resume">
       <div class="container">
         <div class="section-title">
